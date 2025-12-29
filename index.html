@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo Neuro-Blindaje | Dr. Pablo Quiroga</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ========================================
+           VARIABLES Y ESTILOS BASE - DISEÑO MODERNO
+           ======================================== */
+        :root {
+            --color-primary: #00ACC1; /* Turquesa vibrante */
+            --color-primary-dark: #00838F;
+            --color-accent: #FFB300; /* Amarillo más suave */
+            --color-dark: #1A1A2E;
+            --color-light: #F5F7FA;
+            --color-white: #FFFFFF;
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 32px;
+            --radius-xl: 48px;
+            --shadow-soft: 0 10px 40px rgba(0, 172, 193, 0.12);
+            --shadow-medium: 0 20px 60px rgba(0, 172, 193, 0.18);
+            --shadow-large: 0 30px 80px rgba(0, 172, 193, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--color-dark);
+            background-color: var(--color-white);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* ========================================
+           FORMAS ORGÁNICAS DE FONDO
+           ======================================== */
+        .organic-shape {
+            position: absolute;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            opacity: 0.08;
+            z-index: 0;
+            animation: morphing 20s ease-in-out infinite;
+        }
+
+        .organic-shape-1 {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            right: -100px;
+        }
+
+        .organic-shape-2 {
+            background: linear-gradient(225deg, var(--color-accent) 0%, var(--color-primary) 100%);
+            width: 400px;
+            height: 400px;
+            bottom: -100px;
+            left: -150px;
+            animation-delay: -10s;
+        }
+
+        .organic-shape-3 {
+            background: var(--color-primary);
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 5%;
+            animation-delay: -5s;
+        }
+
+        @keyframes morphing {
+            0%, 100% {
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                transform: rotate(0deg) scale(1);
+            }
+            25% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transform: rotate(90deg) scale(1.1);
+            }
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+                transform: rotate(180deg) scale(0.9);
+            }
+            75% {
+                border-radius: 70% 30% 50% 50% / 30% 50% 70% 50%;
+                transform: rotate(270deg) scale(1.05);
+            }
+        }
+
+        /* ========================================
+           ANIMACIONES GLOBALES
+           ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        /* ========================================
+           CONTADOR REGRESIVO MODERNO
+           ======================================== */
+        .countdown-modern {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            box-shadow: 0 4px 30px rgba(0, 172, 193, 0.3);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .countdown-number-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-md);
+            font-variant-numeric: tabular-nums;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulse-soft 2s ease-in-out infinite;
+        }
+
+        .countdown-separator-modern {
+            font-weight: 300;
+            opacity: 0.7;
+        }
+
+        /* ========================================
+           HERO SECTION MODERNO
+           ======================================== */
+        .hero-modern {
+            position: relative;
+            background: linear-gradient(180deg, #F0F9FF 0%, #FFFFFF 100%);
+            overflow: hidden;
+        }
+
+        .badge-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 172, 193, 0.1) 0%, rgba(0, 172, 193, 0.15) 100%);
+            border: 2px solid rgba(0, 172, 193, 0.2);
+            border-radius: 100px;
+            color: var(--color-primary-dark);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-title-modern {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            color: var(--color-dark);
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            border-radius: 100px;
+            border: none;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(0, 172, 193, 0.35);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-modern:hover::before {
+            left: 100%;
+        }
+
+        .cta-modern:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 172, 193, 0.45);
+        }
+
+        .cta-modern:active {
+            transform: translateY(-2px);
+        }
+
+        .hero-image-modern {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-large);
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image-modern:hover {
+            transform: scale(1.02) translateY(-8px);
+        }
+
+        .badge-overlay-modern {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========================================
+           CARDS MODERNOS
+           ======================================== */
+        .card-modern {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 172, 193, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card-modern:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-modern:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-medium);
+            border-color: rgba(0, 172, 193, 0.3);
+        }
+
+        .icon-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(0, 172, 193, 0.1) 0%, rgba(0, 172, 193, 0.2) 100%);
+            border-radius: var(--radius-md);
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card-modern:hover .icon-modern {
+            transform: scale(1.15) rotate(5deg);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+        }
+
+        /* ========================================
+           SECCIÓN PROBLEMA MODERNA
+           ======================================== */
+        .problem-section-modern {
+            background: linear-gradient(180deg, var(--color-dark) 0%, #0F0F1E 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card-modern {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .problem-card-modern.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .problem-card-modern:hover {
+            background: rgba(0, 172, 193, 0.1);
+            border-color: rgba(0, 172, 193, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 172, 193, 0.2);
+        }
+
+        .problem-card-modern .icon-modern {
+            background: rgba(255, 179, 0, 0.15);
+            color: var(--color-accent);
+        }
+
+        .problem-card-modern:hover .icon-modern {
+            transform: scale(1.15) rotate(5deg);
+            background: linear-gradient(135deg, var(--color-accent) 0%, #FF9800 100%);
+            color: white;
+        }
+
+        /* ========================================
+           PILARES MODERNOS
+           ======================================== */
+        .pilar-modern {
+            background: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .pilar-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pilar-modern:hover::before {
+            opacity: 1;
+        }
+
+        .pilar-modern.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pilar-modern:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-medium);
+            border-color: rgba(0, 172, 193, 0.2);
+        }
+
+        .pilar-number {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, rgba(0, 172, 193, 0.15) 0%, rgba(255, 179, 0, 0.15) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .pilar-modern:hover .pilar-number {
+            transform: scale(1.1);
+        }
+
+        /* ========================================
+           SECCIÓN AUTORIDAD MODERNA
+           ======================================== */
+        .authority-photo-modern {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-large);
+            transition: all 0.5s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .authority-photo-modern:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 30px 80px rgba(0, 172, 193, 0.3);
+        }
+
+        .credential-modern {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: rgba(0, 172, 193, 0.04);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-primary);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .credential-modern.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .credential-modern:hover {
+            background: rgba(0, 172, 193, 0.08);
+            transform: translateX(8px);
+        }
+
+        .quote-modern {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border-left: 5px solid var(--color-accent);
+            margin-top: 2rem;
+            box-shadow: var(--shadow-soft);
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* ========================================
+           OFERTA MODERNA
+           ======================================== */
+        .offer-container-modern {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            position: relative;
+            box-shadow: var(--shadow-large);
+            border: 2px solid rgba(0, 172, 193, 0.1);
+            animation: scaleIn 0.8s ease-out;
+        }
+
+        .offer-badge-modern {
+            position: absolute;
+            top: -1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--color-accent) 0%, #FF9800 100%);
+            color: white;
+            padding: 0.875rem 2.5rem;
+            border-radius: 100px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            box-shadow: 0 8px 24px rgba(255, 179, 0, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .stack-item-modern {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: linear-gradient(90deg, #F8FAFC 0%, #FFFFFF 100%);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 172, 193, 0.1);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .stack-item-modern.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .stack-item-modern:hover {
+            background: linear-gradient(90deg, rgba(0, 172, 193, 0.05) 0%, rgba(0, 172, 193, 0.02) 100%);
+            transform: translateX(8px);
+            border-color: rgba(0, 172, 193, 0.3);
+        }
+
+        .stack-item-modern.bonus {
+            background: linear-gradient(90deg, #FFFBEB 0%, #FEF3C7 100%);
+            border-color: rgba(255, 179, 0, 0.3);
+        }
+
+        .stack-item-modern.bonus:hover {
+            background: linear-gradient(90deg, #FEF3C7 0%, #FDE68A 100%);
+        }
+
+        .guarantee-modern {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            border: 2px dashed var(--color-primary);
+            transition: all 0.4s ease;
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        .guarantee-modern:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-medium);
+            border-style: solid;
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            .hero-modern > div > div {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
+
+            .authority-section {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title-modern {
+                font-size: 2.25rem !important;
+            }
+            
+            h2 {
+                font-size: 2rem !important;
+            }
+
+            .organic-shape {
+                display: none;
+            }
+
+            .card-modern,
+            .pilar-modern,
+            .problem-card-modern {
+                padding: 1.5rem;
+            }
+
+            .offer-container-modern {
+                padding: 2rem 1.5rem;
+            }
+
+            .guarantee-modern {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .cta-modern {
+                width: 100%;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            /* Grid 2x2 se convierte en 1 columna en mobile */
+            .problem-section-modern .problem-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .countdown-number-modern {
+                min-width: 45px;
+                height: 45px;
+                font-size: 1.125rem !important;
+            }
+        }
+
+        /* ========================================
+           UTILIDADES
+           ======================================== */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         CONTADOR REGRESIVO MODERNO
+         ============================================ -->
+    <div class="countdown-modern" id="countdownBar">
+        <div style="max-width: 1280px; margin: 0 auto; padding: 1.25rem 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem;">
+            
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fa-solid fa-bell" style="color: white; font-size: 1.25rem; animation: pulse-soft 2s ease-in-out infinite;"></i>
+                <span style="color: white; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    Cierre de inscripciones en:
+                </span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                    <span class="countdown-number-modern" id="days" style="color: white; font-weight: 800; font-size: 1.75rem;">00</span>
+                    <span style="font-size: 0.675rem; color: rgba(255, 255, 255, 0.8); text-transform: uppercase; font-weight: 600;">Días</span>
+                </div>
+                <span class="countdown-separator-modern" style="color: white; font-size: 1.5rem;">:</span>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                    <span class="countdown-number-modern" id="hours" style="color: white; font-weight: 800; font-size: 1.75rem;">00</span>
+                    <span style="font-size: 0.675rem; color: rgba(255, 255, 255, 0.8); text-transform: uppercase; font-weight: 600;">Horas</span>
+                </div>
+                <span class="countdown-separator-modern" style="color: white; font-size: 1.5rem;">:</span>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                    <span class="countdown-number-modern" id="minutes" style="color: white; font-weight: 800; font-size: 1.75rem;">00</span>
+                    <span style="font-size: 0.675rem; color: rgba(255, 255, 255, 0.8); text-transform: uppercase; font-weight: 600;">Min</span>
+                </div>
+                <span class="countdown-separator-modern" style="color: white; font-size: 1.5rem;">:</span>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                    <span class="countdown-number-modern" id="seconds" style="color: white; font-weight: 800; font-size: 1.75rem;">00</span>
+                    <span style="font-size: 0.675rem; color: rgba(255, 255, 255, 0.8); text-transform: uppercase; font-weight: 600;">Seg</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HERO SECTION MODERNO
+         ============================================ -->
+    <section class="hero-modern" style="padding: 6rem 1.5rem; position: relative;">
+        <!-- Formas orgánicas de fondo -->
+        <div class="organic-shape organic-shape-1"></div>
+        <div class="organic-shape organic-shape-2"></div>
+        
+        <div style="max-width: 1280px; margin: 0 auto; position: relative; z-index: 1;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+                
+                <!-- COLUMNA IZQUIERDA -->
+                <div style="display: flex; flex-direction: column; gap: 2rem; animation: slideInLeft 0.8s ease-out;">
+                    
+                    <div class="badge-modern">
+                        <i class="fa-solid fa-video"></i>
+                        <span>Webinar en Vivo | Top Doctor® España</span>
+                    </div>
+
+                    <h1 class="hero-title-modern">
+                        Tu cerebro no está "envejeciendo", 
+                        <span class="hero-title-gradient">está inflamado.</span>
+                    </h1>
+
+                    <div style="height: 4px; width: 100px; background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%); border-radius: 100px;"></div>
+
+                    <p style="font-size: 1.375rem; line-height: 1.6; color: #4B5563; font-weight: 400;">
+                        Descubre el protocolo clínico de <strong style="color: var(--color-primary); font-weight: 700;">120 minutos</strong> para eliminar la "niebla mental", recuperar tu agudeza y blindar tu memoria contra el deterioro.
+                    </p>
+
+                    <div style="display: flex; flex-direction: column; gap: 1rem; padding-top: 0.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; background: rgba(0, 172, 193, 0.05); padding: 1rem 1.5rem; border-radius: var(--radius-md);">
+                            <i class="fa-regular fa-calendar" style="font-size: 1.5rem; color: var(--color-primary);"></i>
+                            <span style="font-size: 1.125rem; font-weight: 600; color: var(--color-dark);">Sábado, 31 de Enero 2025</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; background: rgba(0, 172, 193, 0.05); padding: 1rem 1.5rem; border-radius: var(--radius-md);">
+                            <i class="fa-regular fa-clock" style="font-size: 1.5rem; color: var(--color-primary);"></i>
+                            <span style="font-size: 1.125rem; font-weight: 600; color: var(--color-dark);">10:00 AM (Hora Madrid / España)</span>
+                        </div>
+                    </div>
+
+                    <div style="padding-top: 1rem;">
+                        <a href="#oferta" class="cta-modern">
+                            <span>Reservar mi cupo por $47 USD</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <p style="font-size: 0.875rem; color: #6B7280; margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--color-primary);"></i>
+                            Incluye grabación de por vida + materiales descargables
+                        </p>
+                    </div>
+                </div>
+
+                <!-- COLUMNA DERECHA -->
+                <div style="animation: slideInRight 0.8s ease-out;">
+                    <div class="hero-image-modern" style="position: relative; height: 650px;">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #E0E0E0 0%, #BDBDBD 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1.5rem; padding: 2rem;">
+                            <i class="fa-solid fa-user-doctor" style="font-size: 6rem; color: #9CA3AF;"></i>
+                            <div style="text-align: center;">
+                                <p style="font-weight: 800; font-size: 1.125rem; color: #6B7280; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">[FOTO DR. QUIROGA]</p>
+                                <p style="font-size: 0.875rem; color: #9CA3AF; margin: 0.5rem 0 0 0; max-width: 300px;">Foto profesional con bata blanca, fondo limpio/clínico</p>
+                            </div>
+                        </div>
+                        
+                        <div class="badge-overlay-modern">
+                            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--color-dark); margin: 0;">Dr. Pablo Quiroga</h3>
+                            <p style="color: var(--color-primary); font-weight: 600; font-size: 0.875rem; margin: 0.25rem 0 0 0;">Neurólogo Clínico • Top Doctor® España</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN PROBLEMA MODERNA - 2x2 GRID
+         ============================================ -->
+    <section class="problem-section-modern" style="padding: 6rem 1.5rem; position: relative;">
+        <div class="organic-shape organic-shape-3"></div>
+        
+        <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+            <h2 style="font-size: 3rem; margin-bottom: 3rem; text-align: center; color: white;">
+                ¿Te suena familiar alguna de estas <span style="color: var(--color-accent);">"alarmas silenciosas"</span>?
+            </h2>
+            
+            <!-- Grid 2x2 en desktop, 1 columna en mobile -->
+            <div class="problem-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 4rem;">
+                
+                <div class="problem-card-modern fade-in-section">
+                    <div class="icon-modern" style="background: rgba(255, 179, 0, 0.15); color: var(--color-accent);">
+                        <i class="fa-solid fa-door-open"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: white;">El Efecto Umbral</h3>
+                    <p style="color: #9CA3AF; font-weight: 400; font-size: 1.0625rem; line-height: 1.7;">Entras a una habitación y olvidas a qué ibas. Te pasa más de 3 veces por semana y te genera frustración.</p>
+                </div>
+
+                <div class="problem-card-modern fade-in-section">
+                    <div class="icon-modern" style="background: rgba(255, 179, 0, 0.15); color: var(--color-accent);">
+                        <i class="fa-solid fa-comment-slash"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: white;">La Palabra Perdida</h3>
+                    <p style="color: #9CA3AF; font-weight: 400; font-size: 1.0625rem; line-height: 1.7;">Sabes lo que quieres decir, lo tienes "en la punta de la lengua", pero la palabra simplemente no sale.</p>
+                </div>
+
+                <div class="problem-card-modern fade-in-section">
+                    <div class="icon-modern" style="background: rgba(255, 179, 0, 0.15); color: var(--color-accent);">
+                        <i class="fa-solid fa-battery-quarter"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: white;">Fatiga Vespertina</h3>
+                    <p style="color: #9CA3AF; font-weight: 400; font-size: 1.0625rem; line-height: 1.7;">A las 3:00 PM sientes un cansancio mental profundo ("Brain Fog") que el café ya no soluciona.</p>
+                </div>
+
+                <div class="problem-card-modern fade-in-section">
+                    <div class="icon-modern" style="background: rgba(255, 179, 0, 0.15); color: var(--color-accent);">
+                        <i class="fa-solid fa-dna"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: white;">Miedo Genético</h3>
+                    <p style="color: #9CA3AF; font-weight: 400; font-size: 1.0625rem; line-height: 1.7;">Tienes padres o abuelos con demencia y te aterra pensar que eres el siguiente en la lista.</p>
+                </div>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto; text-align: center; padding-top: 3rem; border-top: 2px solid rgba(255, 255, 255, 0.1);">
+                <p style="font-size: 1.375rem; font-weight: 400; line-height: 1.7; color: #D1D5DB;">
+                    Te han dicho que es "estrés". Te han dicho que "es normal por la edad".<br>
+                    <span style="font-weight: 700; color: white; margin-top: 1.5rem; display: block; font-size: 1.625rem;">Como Neurólogo Clínico, te digo: <span style="color: var(--color-accent);">No es normal.</span> Es una señal de auxilio de tus neuronas.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN SOLUCIÓN (PILARES MODERNOS)
+         ============================================ -->
+    <section style="padding: 6rem 1.5rem; background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%); position: relative; overflow: hidden;">
+        <div class="organic-shape" style="background: var(--color-primary); opacity: 0.05; width: 500px; height: 500px; top: 20%; right: -100px;"></div>
+        
+        <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; background: rgba(0, 172, 193, 0.1); border-radius: 100px; color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.875rem; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>La Intervención</span>
+                </div>
+                <h2 style="font-size: 3rem; color: var(--color-dark); margin-bottom: 1rem; font-weight: 800;">Protocolo Neuro-Blindaje™</h2>
+                <p style="font-size: 1.25rem; color: #6B7280;">Un taller de implementación clínica de 120 minutos.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;">
+                
+                <div class="pilar-modern fade-in-section">
+                    <div class="pilar-number">01</div>
+                    <h3 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-dark);">El Test del Reloj</h3>
+                    <p style="color: #6B7280; line-height: 1.7; font-size: 1rem;">Aprenderás a evaluar tu edad cerebral real en 5 minutos con papel y lápiz. Una herramienta de autodiagnóstico validada.</p>
+                </div>
+
+                <div class="pilar-modern fade-in-section">
+                    <div class="pilar-number">02</div>
+                    <h3 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-dark);">Anti-Inflamación</h3>
+                    <p style="color: #6B7280; line-height: 1.7; font-size: 1rem;">La lista exacta de alimentos "extintores" para tu cerebro y los 3 venenos "neuro-tóxicos" que debes eliminar hoy.</p>
+                </div>
+
+                <div class="pilar-modern fade-in-section">
+                    <div class="pilar-number">03</div>
+                    <h3 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-dark);">Neurogénesis (BDNF)</h3>
+                    <p style="color: #6B7280; line-height: 1.7; font-size: 1rem;">Te enseñaré los ejercicios motores específicos que liberan el factor de crecimiento para crear nuevas neuronas.</p>
+                </div>
+
+                <div class="pilar-modern fade-in-section">
+                    <div class="pilar-number">04</div>
+                    <h3 style="font-size: 1.375rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-dark);">Limpieza Nocturna</h3>
+                    <p style="color: #6B7280; line-height: 1.7; font-size: 1rem;">Activa tu Sistema Glinfático. La rutina nocturna para asegurar que tu cerebro elimine toxinas mientras duermes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN AUTORIDAD MODERNA
+         ============================================ -->
+    <section style="background: linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 100%); padding: 6rem 1.5rem; position: relative; overflow: hidden;">
+        <div class="organic-shape" style="background: white; opacity: 0.3; width: 400px; height: 400px; bottom: -100px; right: -100px;"></div>
+        
+        <div class="authority-section" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 350px 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1;">
+            
+            <div>
+                <div class="authority-photo-modern" style="background: white; padding: 1rem;">
+                    <div style="background: linear-gradient(135deg, #E0E0E0 0%, #BDBDBD 100%); height: 450px; width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; border-radius: var(--radius-md);">
+                        <i class="fa-solid fa-user-doctor" style="font-size: 4rem; color: #9CA3AF;"></i>
+                        <p style="font-weight: 700; color: #6B7280; margin: 0; font-size: 0.875rem;">[FOTO DR. QUIROGA]</p>
+                    </div>
+                    <div style="margin-top: 1.25rem; text-align: center;">
+                        <p style="font-weight: 800; font-size: 1.375rem; margin: 0; color: var(--color-dark);">Dr. Pablo Quiroga</p>
+                        <p style="color: var(--color-primary); font-size: 0.9375rem; margin: 0.375rem 0 0 0; font-weight: 600;">Neurología Clínica</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 2.5rem; color: var(--color-dark);">¿Por qué confiar en este protocolo?</h2>
+                
+                <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    <div class="credential-modern fade-in-section">
+                        <i class="fa-solid fa-certificate" style="color: var(--color-primary); font-size: 1.75rem; margin-top: 0.125rem; flex-shrink: 0;"></i>
+                        <span style="font-size: 1.0625rem; line-height: 1.6; color: var(--color-dark);"><strong style="font-weight: 700;">Top Doctor® España:</strong> Reconocido por excelencia médica y atención centrada en el paciente.</span>
+                    </div>
+
+                    <div class="credential-modern fade-in-section">
+                        <i class="fa-solid fa-brain" style="color: var(--color-primary); font-size: 1.75rem; margin-top: 0.125rem; flex-shrink: 0;"></i>
+                        <span style="font-size: 1.0625rem; line-height: 1.6; color: var(--color-dark);"><strong style="font-weight: 700;">Neurofisiólogo Clínico:</strong> Especialista en el sistema eléctrico cerebral y función cognitiva.</span>
+                    </div>
+
+                    <div class="credential-modern fade-in-section">
+                        <i class="fa-solid fa-book" style="color: var(--color-primary); font-size: 1.75rem; margin-top: 0.125rem; flex-shrink: 0;"></i>
+                        <span style="font-size: 1.0625rem; line-height: 1.6; color: var(--color-dark);"><strong style="font-weight: 700;">Autor Best-Seller:</strong> Escritor de "Cerebro Eterno", guía práctica de neuroplasticidad.</span>
+                    </div>
+
+                    <div class="credential-modern fade-in-section">
+                        <i class="fa-solid fa-building-columns" style="color: var(--color-primary); font-size: 1.75rem; margin-top: 0.125rem; flex-shrink: 0;"></i>
+                        <span style="font-size: 1.0625rem; line-height: 1.6; color: var(--color-dark);"><strong style="font-weight: 700;">Líder Gremial:</strong> Presidente de la Junta Nacional de Neurología.</span>
+                    </div>
+                </div>
+
+                <div class="quote-modern">
+                    <p style="font-style: italic; color: var(--color-dark); font-size: 1.1875rem; line-height: 1.7; margin: 0; font-weight: 500;">"La genética carga el arma, pero tu estilo de vida aprieta el gatillo. Mi misión es enseñarte a ponerle el seguro al arma."</p>
+                    <p style="font-weight: 700; color: var(--color-primary); margin-top: 1rem; margin-bottom: 0; font-size: 1rem;">— Dr. Pablo Quiroga</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN OFERTA MODERNA
+         ============================================ -->
+    <section id="oferta" style="padding: 6rem 1.5rem; background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%); position: relative; overflow: hidden;">
+        <div class="organic-shape" style="background: var(--color-accent); opacity: 0.06; width: 450px; height: 450px; top: 10%; left: -100px;"></div>
+        
+        <div class="offer-container-modern">
+            
+            <div class="offer-badge-modern">
+                <i class="fa-solid fa-star" style="margin-right: 0.5rem;"></i>
+                Oferta Exclusiva
+            </div>
+
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem; margin-top: 2rem; font-weight: 800; color: var(--color-dark);">Esto es lo que recibes hoy:</h2>
+
+            <div style="margin-bottom: 3rem;">
+                
+                <div class="stack-item-modern fade-in-section">
+                    <div style="display: flex; align-items: center; gap: 1.25rem;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, rgba(0, 172, 193, 0.1) 0%, rgba(0, 172, 193, 0.2) 100%); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-ticket" style="color: var(--color-primary); font-size: 1.25rem;"></i>
+                        </div>
+                        <span style="font-weight: 700; font-size: 1.0625rem; color: var(--color-dark);">Acceso al Taller En Vivo (120 min)</span>
+                    </div>
+                    <span style="color: #9CA3AF; text-decoration: line-through; font-size: 1.125rem; font-weight: 600;">$197</span>
+                </div>
+
+                <div class="stack-item-modern fade-in-section">
+                    <div style="display: flex; align-items: center; gap: 1.25rem;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, rgba(0, 172, 193, 0.1) 0%, rgba(0, 172, 193, 0.2) 100%); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-video" style="color: var(--color-primary); font-size: 1.25rem;"></i>
+                        </div>
+                        <span style="font-weight: 700; font-size: 1.0625rem; color: var(--color-dark);">Grabación de por vida (HD)</span>
+                    </div>
+                    <span style="color: #9CA3AF; text-decoration: line-through; font-size: 1.125rem; font-weight: 600;">$97</span>
+                </div>
+
+                <div class="stack-item-modern fade-in-section">
+                    <div style="display: flex; align-items: center; gap: 1.25rem;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, rgba(0, 172, 193, 0.1) 0%, rgba(0, 172, 193, 0.2) 100%); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-file-pdf" style="color: var(--color-primary); font-size: 1.25rem;"></i>
+                        </div>
+                        <span style="font-weight: 700; font-size: 1.0625rem; color: var(--color-dark);">Workbook "Neuro-Map" (PDF)</span>
+                    </div>
+                    <span style="color: #9CA3AF; text-decoration: line-through; font-size: 1.125rem; font-weight: 600;">$47</span>
+                </div>
+
+                <div class="stack-item-modern bonus fade-in-section">
+                    <div style="display: flex; align-items: center; gap: 1.25rem;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, rgba(255, 179, 0, 0.15) 0%, rgba(255, 179, 0, 0.25) 100%); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-headphones" style="color: var(--color-accent); font-size: 1.25rem;"></i>
+                        </div>
+                        <span style="font-weight: 700; font-size: 1.0625rem; color: var(--color-dark);">
+                            <span style="background: linear-gradient(135deg, var(--color-accent) 0%, #FF9800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 0.5rem;">BONUS:</span>
+                            Audio "Calma tu Amígdala"
+                        </span>
+                    </div>
+                    <span style="color: #9CA3AF; text-decoration: line-through; font-size: 1.125rem; font-weight: 600;">$27</span>
+                </div>
+
+                <div class="stack-item-modern bonus fade-in-section">
+                    <div style="display: flex; align-items: center; gap: 1.25rem;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, rgba(255, 179, 0, 0.15) 0%, rgba(255, 179, 0, 0.25) 100%); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-pills" style="color: var(--color-accent); font-size: 1.25rem;"></i>
+                        </div>
+                        <span style="font-weight: 700; font-size: 1.0625rem; color: var(--color-dark);">
+                            <span style="background: linear-gradient(135deg, var(--color-accent) 0%, #FF9800 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 0.5rem;">BONUS:</span>
+                            Guía de Suplementación
+                        </span>
+                    </div>
+                    <span style="color: #9CA3AF; text-decoration: line-through; font-size: 1.125rem; font-weight: 600;">$47</span>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <p style="color: #6B7280; font-size: 1.125rem; margin-bottom: 0.75rem; font-weight: 500;">Valor Total: <span style="text-decoration: line-through; color: #9CA3AF;">$415 USD</span></p>
+                <div style="font-size: 4.5rem; font-weight: 900; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; letter-spacing: -0.03em;">$47 USD</div>
+                
+                <a href="#" class="cta-modern" style="font-size: 1.125rem; padding: 1.5rem 3rem; width: 100%; max-width: 600px; margin: 0 auto;">
+                    <span>SÍ, QUIERO BLINDAR MI CEREBRO</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                
+                <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 2.5rem; color: #6B7280; font-size: 0.9375rem; flex-wrap: wrap;">
+                    <span style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-lock" style="color: var(--color-primary);"></i> 
+                        Pago Seguro SSL
+                    </span>
+                    <span style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-rotate-left" style="color: var(--color-primary);"></i> 
+                        Garantía 30 Días
+                    </span>
+                    <span>
+                        <i class="fa-brands fa-cc-visa" style="font-size: 1.5rem; color: #1A1F71;"></i> 
+                        <i class="fa-brands fa-cc-mastercard" style="font-size: 1.5rem; color: #EB001B; margin-left: 0.375rem;"></i> 
+                        <i class="fa-brands fa-cc-paypal" style="font-size: 1.5rem; color: #003087; margin-left: 0.375rem;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+       <!-- ============================================
+     URGENCIA - PRECIO POR ETAPAS
+     ============================================ -->
+<div style="max-width: 900px; margin: 3rem auto 0; background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); border-radius: var(--radius-lg); padding: 3rem; position: relative; overflow: hidden; border: 3px solid var(--color-accent); box-shadow: 0 20px 60px rgba(255, 179, 0, 0.3); animation: fadeInUp 1.4s ease-out;">
+    
+    <!-- Badge flotante -->
+    <div style="position: absolute; top: -1rem; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%); color: white; padding: 0.625rem 1.5rem; border-radius: 100px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4); animation: pulse-soft 2s ease-in-out infinite;">
+        <i class="fa-solid fa-clock" style="margin-right: 0.5rem;"></i>
+        Precio Aumenta Pronto
+    </div>
+
+    <div style="text-align: center; padding-top: 1rem;">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: white; border-radius: 50%; margin-bottom: 1.5rem; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+            <i class="fa-solid fa-rocket" style="font-size: 2.5rem; color: var(--color-accent);"></i>
+        </div>
+        
+        <h3 style="font-size: 2rem; font-weight: 800; color: var(--color-dark); margin-bottom: 1rem;">Estás en la Etapa 1 (Precio Fundador)</h3>
+        
+        <p style="font-size: 1.125rem; line-height: 1.7; color: #78350F; margin-bottom: 2rem;">
+            El precio de este workshop aumenta por etapas conforme se acerca la fecha del evento. <strong>Asegura tu cupo ahora por solo $47 USD</strong> antes de que pase a la Etapa 2.
+        </p>
+
+        <div style="background: white; border-radius: var(--radius-md); padding: 2rem; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: center;">
+                
+                <!-- Etapa 1 (Actual) -->
+                <div style="position: relative;">
+                    <div style="position: absolute; top: -2rem; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; padding: 0.375rem 0.875rem; border-radius: 100px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; white-space: nowrap;">
+                        Estás Aquí
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%); border-radius: var(--radius-md); border: 2px solid #10B981;">
+                        <p style="font-weight: 700; color: #065F46; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 0.5rem;">Etapa 1</p>
+                        <p style="font-size: 2.5rem; font-weight: 900; color: #10B981; margin: 0; line-height: 1;">$47</p>
+                        <p style="font-size: 0.75rem; color: #059669; margin-top: 0.5rem; font-weight: 600;">Hasta el 15 Ene</p>
+                    </div>
+                </div>
+
+                <!-- Flecha -->
+                <div style="text-align: center;">
+                    <i class="fa-solid fa-arrow-right" style="font-size: 2rem; color: #D97706;"></i>
+                </div>
+
+                <!-- Etapa 2 -->
+                <div style="position: relative;">
+                    <div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%); border-radius: var(--radius-md); border: 2px dashed #EF4444;">
+                        <p style="font-weight: 700; color: #991B1B; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 0.5rem;">Etapa 2</p>
+                        <p style="font-size: 2.5rem; font-weight: 900; color: #DC2626; margin: 0; line-height: 1;">$67</p>
+                        <p style="font-size: 0.75rem; color: #B91C1C; margin-top: 0.5rem; font-weight: 600;">Desde 16 Ene</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px dashed #E5E7EB;">
+                <p style="font-size: 1rem; color: #6B7280; margin: 0;">
+                    <i class="fa-solid fa-triangle-exclamation" style="color: #F59E0B; margin-right: 0.5rem;"></i>
+                    El precio aumenta <strong style="color: var(--color-dark);">$20 USD</strong> en <strong style="color: var(--color-dark);">17 días</strong>. Reserva ahora y ahorra.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- ============================================
+         FOOTER MODERNO
+         ============================================ -->
+    <footer style="background: linear-gradient(135deg, var(--color-dark) 0%, #0F0F1E 100%); color: white; padding: 3.5rem 1.5rem; text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                <i class="fa-solid fa-brain" style="font-size: 1.75rem; color: white;"></i>
+            </div>
+            <p style="margin-bottom: 1.5rem; font-weight: 700; font-size: 1.375rem;">Dr. Pablo Quiroga</p>
+            <p style="color: #9CA3AF; margin-bottom: 0.75rem; font-size: 0.9375rem;">© 2025 Todos los derechos reservados.</p>
+            <p style="color: #6B7280; font-size: 0.875rem;">
+                Este sitio no forma parte de Facebook o Meta Inc. | 
+                <a href="#" style="color: var(--color-primary); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='var(--color-primary)'">Aviso Legal</a> | 
+                <a href="#" style="color: var(--color-primary); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='var(--color-primary)'">Privacidad</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // ========== COUNTDOWN TIMER ==========
+        (function() {
+            const targetDate = new Date(2025, 0, 31, 23, 59, 59).getTime();
+            
+            const countdownBar = document.getElementById('countdownBar');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    daysEl.textContent = '00';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                daysEl.textContent = String(days).padStart(2, '0');
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+
+        // ========== SCROLL ANIMATIONS ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                        entry.target.classList.add('animate-in');
+                    }, index * 80);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach((el) => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.problem-card-modern').forEach((el, index) => {
+            setTimeout(() => observer.observe(el), index * 120);
+        });
+
+        document.querySelectorAll('.pilar-modern').forEach((el, index) => {
+            setTimeout(() => observer.observe(el), index * 150);
+        });
+
+        document.querySelectorAll('.stack-item-modern').forEach((el, index) => {
+            setTimeout(() => observer.observe(el), index * 100);
+        });
+
+        document.querySelectorAll('.credential-modern').forEach((el, index) => {
+            setTimeout(() => {
+                observer.observe(el);
+                setTimeout(() => el.classList.add('animate-in'), index * 200);
+            }, 200);
+        });
+
+        // ========== SMOOTH SCROLL ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ========== PARALLAX SUAVE EN SCROLL ==========
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const organicShapes = document.querySelectorAll('.organic-shape');
+            organicShapes.forEach((shape, index) => {
+                const speed = 0.3 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+
+</body>
+</html>
